@@ -1,27 +1,37 @@
 <template>
-  <div class="fixed right-0 bottom-0 m-5 z-100 flex font-sans select-none leading-1em">
-    <div
-      class="bg-white text-gray-800 rounded-full shadow w-max h-min"
-      p="x-4 y-2"
-      m="y-auto r-2"
-      transition="opacity duration-300"
-      :class="show ? 'opacity-100' : 'opacity-0'"
-    >
-      Vitesse WebExt
+  <div class="h-full w-full">
+    <div class="fixed right-0 bottom-0 m-5 z-100 flex font-sans select-none leading-1em items-center justify-center">
+      <div
+        class="flex shadow cursor-pointer"
+        bg="teal-600 hover:teal-700 w-10 h-10 rounded-full"
+        transition="all 0.4s ease"
+        @click="toggle()"
+      >
+        <mdi-youtube-gaming class="text-white text-lg" />
+      </div>
     </div>
     <div
-      class="flex w-10 h-10 rounded-full shadow cursor-pointer"
-      bg="teal-600 hover:teal-700"
-      @click="toggle()"
+      v-show="show"
+      style="height: 50vh; width: 50vw; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3000"
+      transition="opacity ease"
+      class="fixed bg-base-100"
+      :class="{ 'opacity-0': !show, 'opacity-100': show }"
     >
-      <pixelarticons-power class="block m-auto text-white text-lg" />
+      <form class="flex flex-col gap-4 h-full w-full items-center justify-center">
+        <div class="p-10 card bg-base-200 form-control">
+          <label class="label">
+            <span class="label-text">Twitch Username</span>
+          </label>
+          <input type="text" class="input" placeholder="Search" />
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useToggle } from '@vueuse/core'
-import 'virtual:windi.css'
+import { useToggle } from "@vueuse/core"
+import "virtual:windi.css"
 
 const [show, toggle] = useToggle(false)
 </script>
